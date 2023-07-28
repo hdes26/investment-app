@@ -1,1 +1,50 @@
-<p>register works!</p>
+<main class="flex w-full p-5 text-xs sm:text-base h-screen flex-col justify-center items-center">
+    <div class="flex flex-col items-center justify-center  h-screen sm:w-max sm:h-max border-gray-200 border-2 rounded-xl">
+
+        <div class="grid grid-cols-3 w-3/4 h-min gap-5 md:gap-2 md:grid-cols-6 sm:py-7 md:py-16 container xl:py-28">
+
+            <h1
+            class="relative col-span-5 aspect-auto md:row-span-5 overflow-hidden text-lg  xl:w-full xl:text-2xl font-bold"
+            >
+                Para simular tu inversión debes regístrarte
+            </h1>
+
+            <p 
+            class="relative col-span-6 aspect-auto md:row-span-6 overflow-hidden"
+            > 
+                Regístrate a nuestra comunidad de inversionistas.
+            </p>
+
+            <form 
+            [formGroup]="registerForm"
+            (ngSubmit)="onSubmit()"
+            class="grid grid-cols-6 relative col-span-6 aspect-auto row-span-6 overflow-hidden gap-y-2"
+            >
+            <input formControlName="name"  name="Nombre"  class="col-span-3 rounded-l-md  border-y-2 border-x-2 px-7 p-2 border-gray-200" placeholder="Nombre">
+            <input formControlName="last_name"  type="text" name="Apellido"  class="col-span-3 rounded-r-md  border-y-2 px-7 p-2 border-r-2 border-gray-200" placeholder="Apellido">
+            <input formControlName="email"  type="text" name="Email"  class="col-span-6 rounded-md  border-2 px-7 p-2 border-gray-200" placeholder="Correo electronico">
+            <input formControlName="prefix" type="text" name="Prefix"  class="col-span-1  xl:col-span-2 text-xs sm:text-sm rounded-l-md  border-y-2 xl:px-7 p-2 border-x-2 border-gray-200" placeholder="+57">
+            <input formControlName="cellphone" type="text" name="Cellphone"  class="col-span-5 xl:col-span-4 rounded-r-md  border-y-2 px-7 p-2 border-r-2 border-gray-200" placeholder="000 00 000 000">
+            <div class="flex justify-between col-span-6 rounded  border-2  border-gray-200">
+                <input formControlName="password" type="password" name="Password"  class="px-7 p-2 w-10/12" placeholder="Digita tu contraseña">
+                <button class="p-2 text-gray-300 line-through">Hide</button>
+            </div>
+            <input formControlName="met" type="text" name="Met"  class="flex col-span-6 rounded  border-2 px-7 p-2  border-gray-200" placeholder="¿Cómo nos conociste?">
+            <input formControlName="referral_code" type="text" name="referral_code"  class="flex col-span-6 rounded  border-2 px-7 p-2  border-gray-200" placeholder="Código de referido">
+            <div class="flex flex-row gap-5 items-center mt-2 col-span-6">
+                <input type="checkbox" name="" id="" class="flex justify-between h-7 w-4 rounded-sm">
+                <p> Acepto <span class="text-[#4743E0] font-semibold">términos y condiciones</span></p>
+            </div>
+
+            <button class="col-span-6 bg-black text-white rounded-3xl p-3 my-2">
+                Regístrate
+            </button>
+
+            <p class="col-span-6  text-center text-[#33333383]">¿Ya tienes cuenta?</p>
+            <p class="col-span-6  text-center text-[#4743E0]">Iniciar sesión</p>
+
+            </form>
+        </div>
+
+    </div>
+</main>
