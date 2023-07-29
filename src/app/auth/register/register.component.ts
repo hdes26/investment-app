@@ -11,7 +11,7 @@ export class RegisterComponent {
     last_name: new FormControl('', [Validators.required, Validators.minLength(2)]),
     email: new FormControl('', [Validators.email, Validators.required]),
     prefix: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+$')]),
-    cellphone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+$')]),
+    cellphone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+$'),Validators.minLength(10)]),
     password: new FormControl('', [Validators.required, Validators.minLength(5)]),
     met: new FormControl('', [Validators.required, this.validateDropdown]),
     referral_code: new FormControl('', [Validators.pattern('^[0-9]+$')]),
