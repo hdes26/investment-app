@@ -33,25 +33,38 @@
                 <input type="text" name="Prefix"
                     class="relative col-span-1 text-center xl:col-span-2 text-my-custom-size sm:text-sm rounded-md ml-1 border-2 xl:px-7 sm:p-2  border-gray-200"
                     placeholder="100">
-                <p class="relative col-span-5 text-my-custom-size md:text-xs pl-2 text-gray-600">Digita la cantidad a invertir</p>
-                <p class="relative col-span-1 text-my-custom-size md:text-xs pl-2 sm:pl-8 xl:pl-0  xl:mr-2 text-gray-600">Units</p>
+                <p class="relative col-span-5 text-my-custom-size md:text-xs pl-2 text-gray-600">Digita la cantidad a
+                    invertir</p>
+                <p
+                    class="relative col-span-1 text-my-custom-size md:text-xs pl-2 sm:pl-8 xl:pl-0  xl:mr-2 text-gray-600">
+                    Units</p>
 
             </form>
 
 
         </div>
-        <div class="flex flex-col border-t-2 border-t-gray-300 w-full p-6 mt-5">
+        <div class="flex flex-col border-t-2 border-t-gray-200 w-full p-6 mt-5">
+
             <div class="flex flex-row justify-evenly w-full pt-3">
-                    <div class="flex items-center gap-x-2">
-                        <span class="w-3 h-3 border border-[#3533FF] rounded-full bg-[#6DECB9]"></span>
-                        <p>R: Rentabilidad</p>
-                    </div>
-                    <div class="flex items-center gap-x-2">
-                        <span class="w-3 h-3 border border-[#3533FF] rounded-full bg-[#5452F6]"></span>
-                        <p>V: Valorización</p>
-                    </div>
-                    
+                <div class="flex items-center gap-x-2">
+                    <span class="w-3 h-3 border border-[#3533FF] rounded-full bg-[#6DECB9]"></span>
+                    <p>R: Rentabilidad</p>
+                </div>
+                <div class="flex items-center gap-x-2">
+                    <span class="w-3 h-3 border border-[#3533FF] rounded-full bg-[#5452F6]"></span>
+                    <p>V: Valorización</p>
+                </div>
+
+
             </div>
+
+            <div class="flex justify-center w-full mt-6">
+                <app-chart class="flex justify-center w-full"></app-chart>
+            </div>
+            <div class="flex justify-center w-full">
+                <p class="text-[#848484] w-max text-my-custom-size md:text-sm"> *Proyecciones estimadas, sujetas a cambios.</p>
+            </div>
+
         </div>
     </div>
 </main>
