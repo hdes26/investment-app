@@ -7,13 +7,15 @@ import { RegisterComponent } from './auth/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthComponent } from './auth/auth.component';
+import { InvestmentComponent } from './investment/investment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    AuthComponent
+    AuthComponent,
+    InvestmentComponent
   ],
   imports: [
     BrowserModule,
