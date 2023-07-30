@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,6 +8,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  constructor(private authService: AuthService){}
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.email, Validators.required]),
     password: new FormControl('', [Validators.required]),
@@ -14,16 +16,13 @@ export class LoginComponent {
   });
   showPassword: boolean = false;
 
-  saveSession(){
-    localStorage.setItem('key', 'Mykey')
-  }
+
   togglePasswordVisibility(){
     this.showPassword = !this.showPassword;
   }
-  onSubmit() {
-    if (this.loginForm.value?.save_session) {
-      this.saveSession()
-    }
+  async onSubmit() {
+    const {email, password} = this.loginForm.value;
+    await this.authService.loginUser(email, password);
   }
   
 }
