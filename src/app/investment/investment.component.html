@@ -1,6 +1,6 @@
-<main class="flex w-full mt-1 p-2 text-xs sm:text-base h-min flex-col justify-center items-center">
+<main class="flex w-full p-2 text-xs sm:text-base h-screen xs:h-full flex-col justify-center items-center bg-gray-100">
     <div
-        class="flex flex-col items-center w-full justify-evenly h-min xl:w-max xl:h-max border-gray-200 border-2 py-0 rounded-xl shadow-lg">
+        class="flex flex-col items-center w-full justify-evenly h-max xl:w-max xl:h-max border-gray-200 border-2 py-0 rounded-xl shadow-lg bg-white">
 
         <div class="grid grid-cols-3 w-3/4 h-min gap-4 md:gap-2 md:grid-cols-6 sm:py-3 sm:mt-1 py-3 mt-12">
 
@@ -27,12 +27,14 @@
                     </option>
                 </select>
 
-                <input type="text" name="Cellphone"
-                    class="relative col-span-5 xl:col-span-4 rounded-md text-xs sm:text-sm  border-2 px-7 p-2 mr-1  border-gray-200"
-                    placeholder="$ 11.000.000">
+                <div class="relative col-span-5 xl:col-span-4 rounded-md text-xs sm:text-sm border-2 border-gray-200">
+                    <span class="absolute inset-y-0 top-2 left-5 text-gray-600 font-bold">$</span>
+                    <input type="text" name="Cellphone" class="pl-8 p-2 w-full font-bold" placeholder="11.000.000" value="11.000.000">
+                  </div>
+
                 <input type="text" name="Prefix"
-                    class="relative col-span-1 text-center xl:col-span-2 text-my-custom-size sm:text-sm rounded-md ml-1 border-2 xl:px-7 sm:p-2  border-gray-200"
-                    placeholder="100">
+                    class="relative col-span-1 text-center xl:col-span-2 text-my-custom-size sm:text-sm rounded-md ml-1 border-2 xl:px-7 sm:p-2  border-gray-200 font-bold"
+                    placeholder="100" value="100">
                 <p class="relative col-span-5 text-my-custom-size md:text-xs pl-2 text-gray-600">Digita la cantidad a
                     invertir</p>
                 <p
@@ -46,7 +48,7 @@
 
         <div class="flex flex-col border-t-2  border-t-gray-200 w-full p-6 mt-5 md:mt-0">
 
-            <div class="flex flex-row justify-evenly w-full pt-3">
+            <div class="flex flex-row justify-evenly w-full">
                 <div class="flex items-center gap-x-2">
                     <span class="w-3 h-3 border border-[#3533FF] rounded-full bg-[#6DECB9]"></span>
                     <p>R: Rentabilidad</p>
@@ -76,7 +78,8 @@
                     de tratamiento de datos</a>
             </div>
 
-            <button class=" flex self-center w-3/4 justify-center bg-black text-white rounded-3xl p-2 my-2 hover:bg-gray-800 transition">
+            <button
+                class=" flex self-center w-3/4 justify-center bg-black text-white rounded-3xl p-2 my-2 hover:bg-gray-800 transition">
                 Calcular inversión
             </button>
 
@@ -86,15 +89,16 @@
 
             <div class="flex justify-center w-full">
                 <p class="text-[#4743E0] w-max text-my-custom-size md:text-sm">
-                    <span class="mr-2 cursor-pointer hover:text-blue-900" routerLink="/auth/login">Iniciar sesión</span> | <span
-                        class="ml-2 cursor-pointer hover:text-blue-900" routerLink="/auth/register">Crea tu cuenta</span>
+                    <span class="mr-2 cursor-pointer hover:text-blue-900" routerLink="/auth/login">Iniciar sesión</span>
+                    | <span class="ml-2 cursor-pointer hover:text-blue-900" routerLink="/auth/register">Crea tu
+                        cuenta</span>
                 </p>
             </div>
 
             <div class="flex justify-center self-center w-3/4 md:w-full h-min gap-x-3 my-3 md:my- items-center">
 
-                <svg class="border-2 border-[#3533FF] rounded-full w-16" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                <svg class="border-2 border-[#3533FF] rounded-full w-16" viewBox="0 0 60 60" fill="none"
+                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <rect width="60" height="60" fill="url(#pattern0)" />
                     <defs>
                         <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
@@ -106,7 +110,9 @@
                 </svg>
 
                 <p class="text-[#0300F9]">
-                    <span class="text-[#3533FF] font-semibold cursor-pointer hover:text-[#FE982C]">Asesórate</span> o resuelve tus dudas con un experto. <span class="text-[##3533FF] font-semibold cursor-pointer hover:text-[#FE982C]">Aquí</span>
+                    <span class="text-[#3533FF] font-semibold cursor-pointer hover:text-[#FE982C]">Asesórate</span> o
+                    resuelve tus dudas con un experto. <span
+                        class="text-[##3533FF] font-semibold cursor-pointer hover:text-[#FE982C]">Aquí</span>
                 </p>
 
             </div>
