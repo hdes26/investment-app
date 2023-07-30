@@ -36,16 +36,26 @@
 
                 <div class="relative col-span-5 xl:col-span-4 rounded-md text-xs sm:text-sm border-2 border-gray-200">
                     <span class="absolute inset-y-0 top-2 left-5 text-gray-600 font-bold">$</span>
-                    <input formControlName="amount" type="number" inputmode="numeric" name="Cellphone" class="no-spin pl-8 p-2 w-full font-bold" placeholder="11.000.000">
+                    <input
+                    formControlName="amount"
+                    type="text" 
+                    inputmode="numeric" 
+                    name="amount" 
+                    class="no-spin pl-8 p-2 w-full font-bold"
+                    placeholder="10.000.000" 
+                    (input)="onInputChange()"
+                    >
                   </div>
 
                 <input 
+                    formControlName="units"
                     type="number" 
                     name="Units"
                     inputmode="numeric"
-                    formControlName="units"
+                    [readonly]="true"
                     class="relative col-span-1 no-spin text-center xl:col-span-2 text-my-custom-size focus:outline-none sm:text-sm rounded-md ml-1 border-2 xl:px-7 sm:p-2  border-gray-200 font-bold"
-                    placeholder="100">
+                    placeholder="100"
+                    >
                 <p class="relative col-span-5 text-my-custom-size md:text-xs pl-2 text-gray-600">Digita la cantidad a
                     invertir</p>
                 <p *ngIf="(investmentForm.get('units')?.errors && !investmentForm.get('units')?.touched) || !investmentForm.get('units')?.errors"
