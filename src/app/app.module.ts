@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './auth/register/register.component';
+import { RegisterComponent } from './pages/auth/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './auth/login/login.component';
-import { AuthComponent } from './auth/auth.component';
-import { InvestmentComponent } from './investment/investment.component';
-import { ChartComponent } from './investment/chart/chart.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { AuthComponent } from './pages/auth/auth.component';
+import { ChartComponent } from './pages/investment/chart/chart.component';
+import { InvestmentComponent } from './pages/investment/investment.component';
 
 @NgModule({
   declarations: [
