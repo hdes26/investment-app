@@ -1,4 +1,4 @@
-    <div class="flex flex-col items-center justify-center  h-screen sm:w-max sm:h-max border-gray-200 border-2 rounded-xl shadow-lg">
+    <div class="flex flex-col items-center justify-center  h-screen sm:w-max sm:h-max border-gray-200 border-2 rounded-xl shadow-lg bg-white">
 
         <div class="grid grid-cols-3 w-3/4 h-min gap-2 md:gap-2 md:grid-cols-6 sm:py-7 md:py-16 container xl:py-20">
 
@@ -39,7 +39,10 @@
                 <a class="text-sm"> Guardar en este navegador</a>
             </div>
 
-            <button [disabled]="loginForm.invalid" class="col-span-6 bg-black text-white rounded-3xl p-3 my-2 mt-8">
+            <button *ngIf="!loginForm.invalid" [disabled]="loginForm.invalid" class="col-span-6 bg-black text-white rounded-3xl p-3 my-2 mt-8">
+                Ingresar
+            </button>
+            <button *ngIf="loginForm.invalid"  class="col-span-6 bg-black cursor-not-allowed text-white rounded-3xl p-3 my-2 mt-8">
                 Ingresar
             </button>
 

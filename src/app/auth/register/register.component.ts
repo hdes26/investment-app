@@ -27,14 +27,6 @@ export class RegisterComponent {
     }
     return null;
   }
-  onCheckboxChange() {
-    const checkboxValue = this.registerForm.get('terms_condition')?.value;
-    if (checkboxValue) {
-      this.registerForm.get('terms_condition')?.setValue(false);
-    } else {
-      this.registerForm.get('terms_condition')?.setValue(true);
-    }
-  }
   togglePasswordVisibility(){
     this.showPassword = !this.showPassword;
 

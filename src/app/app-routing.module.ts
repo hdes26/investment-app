@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 import { authRoutes } from './auth/auth.routes';
+import { InvestmentComponent } from './investment/investment.component';
 
 const routes: Routes = [
   {
@@ -9,6 +10,7 @@ const routes: Routes = [
     component:AuthComponent,
     children:authRoutes,    
   },
+  { path:'',component:InvestmentComponent},
   { path: '**', redirectTo: '' }
 ];
 
