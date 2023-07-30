@@ -19,28 +19,38 @@
 
             </div>
 
-            <form class="grid grid-cols-6 relative col-span-6 aspect-auto row-span-6 overflow-hidden  gap-y-2 xl:mt-4">
+            <form 
+            [formGroup]="investmentForm"
+            (ngSubmit)="onSubmit()"
+            class="grid grid-cols-6 relative col-span-6 aspect-auto row-span-6 overflow-hidden  gap-y-2 xl:mt-4">
 
-                <select id="opciones"
+                <select 
+                    formControlName="project"
+                    id="opciones"
                     class=" col-span-6 rounded border-2 px-6 p-2 border-gray-200 text-my-custom-size md:text-base text-gray-500">
                     <option value="" disabled selected>Selecciona el proyecto que quieres invertir
                     </option>
+                    <option *ngFor="let option of projectOptions" [value]="option">{{ option }}</option>
+
                 </select>
 
                 <div class="relative col-span-5 xl:col-span-4 rounded-md text-xs sm:text-sm border-2 border-gray-200">
                     <span class="absolute inset-y-0 top-2 left-5 text-gray-600 font-bold">$</span>
-                    <input type="text" name="Cellphone" class="pl-8 p-2 w-full font-bold" placeholder="11.000.000" value="11.000.000">
+                    <input formControlName="amount" type="number" inputmode="numeric" name="Cellphone" class="no-spin pl-8 p-2 w-full font-bold" placeholder="11.000.000">
                   </div>
 
-                <input type="text" name="Prefix"
-                    class="relative col-span-1 text-center xl:col-span-2 text-my-custom-size sm:text-sm rounded-md ml-1 border-2 xl:px-7 sm:p-2  border-gray-200 font-bold"
-                    placeholder="100" value="100">
+                <input 
+                    type="number" 
+                    name="Units"
+                    inputmode="numeric"
+                    formControlName="units"
+                    class="relative col-span-1 no-spin text-center xl:col-span-2 text-my-custom-size focus:outline-none sm:text-sm rounded-md ml-1 border-2 xl:px-7 sm:p-2  border-gray-200 font-bold"
+                    placeholder="100">
                 <p class="relative col-span-5 text-my-custom-size md:text-xs pl-2 text-gray-600">Digita la cantidad a
                     invertir</p>
-                <p
+                <p *ngIf="(investmentForm.get('units')?.errors && !investmentForm.get('units')?.touched) || !investmentForm.get('units')?.errors"
                     class="relative col-span-1 text-my-custom-size md:text-xs pl-2 sm:pl-8 xl:pl-0 xl:right-3 text-gray-600">
                     Units</p>
-
             </form>
 
 
@@ -72,16 +82,26 @@
 
 
             <div class="flex justify-center self-center w-3/4 h-min gap-x-3 my-4 md:my-4 xl:mt-8">
-                <input type="checkbox" name="" id="" class="h-7 w-4 rounded-sm cursor-pointer">
+                <input  (click)="onCheckboxChange()" type="checkbox" class="h-7 w-4 rounded-sm cursor-pointer">
                 <a class="text-my-custom-size md:text-sm w-full"> Acepto los <span
                         class="text-[#4743E0] cursor-pointer font-semibold">términos y condiciones</span> de la politica
                     de tratamiento de datos</a>
             </div>
 
             <button
-                class=" flex self-center w-3/4 justify-center bg-black text-white rounded-3xl p-2 my-2 hover:bg-gray-800 transition">
+                *ngIf="!investmentForm.invalid"
+                [disabled]="investmentForm.invalid"
+                (click)="onSubmit()"
+                class="flex self-center w-3/4 justify-center  bg-black text-white rounded-3xl p-2 my-2 hover:bg-gray-800 transition">
                 Calcular inversión
             </button>
+            <button
+                *ngIf="investmentForm.invalid"
+                class="flex self-center w-3/4 justify-center cursor-not-allowed bg-black text-white rounded-3xl p-2 my-2 hover:bg-gray-800 transition">
+                Calcular inversión
+            </button>
+
+            
 
             <div class="flex justify-center w-full mt-4">
                 <p class="text-[#848484] w-max text-my-custom-size md:text-sm">¿Ya tienes cuenta?</p>
@@ -112,7 +132,7 @@
                 <p class="text-[#0300F9]">
                     <span class="text-[#3533FF] font-semibold cursor-pointer hover:text-[#FE982C]">Asesórate</span> o
                     resuelve tus dudas con un experto. <span
-                        class="text-[##3533FF] font-semibold cursor-pointer hover:text-[#FE982C]">Aquí</span>
+                        class="text-[##3533FF] font-semibold cursor-pointer hover:text-[#FE982C] underline">Aquí</span>
                 </p>
 
             </div>
