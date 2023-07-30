@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
-import { User } from 'src/app/models/user.model';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import Swal from 'sweetalert2'
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -9,7 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RegisterComponent {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   registerForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -37,6 +39,33 @@ export class RegisterComponent {
 
   }
   async onSubmit() {
-    await this.authService.createUser(this.registerForm.value)
+
+    Swal.fire({
+      title: 'Registrando usuario...',
+      timerProgressBar: true,
+      didOpen: async () => {
+        try {
+          Swal.showLoading();
+          const result = await this.authService.signUp(this.registerForm.value);
+
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500
+          }).then(() => {
+            this.router.navigate(['/'])
+          });
+
+        } catch (error) {
+          Swal.fire({
+            text: 'Ha ocurrido un error al registrar el usuario',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+      },
+    });
   }
 }

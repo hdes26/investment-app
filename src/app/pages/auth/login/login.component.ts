@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-login',
@@ -8,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private authService: AuthService){}
+  constructor(private authService: AuthService, private router: Router) { }
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.email, Validators.required]),
     password: new FormControl('', [Validators.required]),
@@ -17,12 +19,31 @@ export class LoginComponent {
   showPassword: boolean = false;
 
 
-  togglePasswordVisibility(){
+  togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
   async onSubmit() {
-    const {email, password} = this.loginForm.value;
-    await this.authService.loginUser(email, password);
+    const { email, password } = this.loginForm.value;
+    const login = await this.authService.signIn(email, password);
+
+    if (!login.status) {
+      Swal.fire({
+        text: login.msg,
+        icon: 'error',
+        showConfirmButton: false,
+        timer: 1500
+      });
+      return;
+    }
+
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      showConfirmButton: false,
+      timer: 1500
+    }).then(() => {
+      this.router.navigate(['/'])
+    });
   }
-  
+
 }
