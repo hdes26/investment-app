@@ -1,27 +1,34 @@
-# InvestmentApp
+# Prueba Tecnica Lokl Hernan Escorcia
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.7.
+_esta prueba fue realizada utilizando angular, tailwind, firebase_
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Instalación 🔧
 
-## Code scaffolding
+### _1. clone el repositorio_
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+git clone https://github.com/hdes26/investment-app.git
+```
 
-## Build
+### _2. instale las dependencias_
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```
+npm install
+```
+### _3. encendemos la aplicacion_
 
-## Running unit tests
+```
+npm start
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
 
-## Running end-to-end tests
+## Recursos 🔗
+[Repositorio Github](https://github.com/hdes26/investment-app) 
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Netlify 🌶️
+[Netlify](https://incomparable-daifuku-8c6f7c.netlify.app/) 
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
