@@ -2,6 +2,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Injectable } from "@angular/core";
 import { User } from "../models/user.model";
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -66,9 +67,6 @@ export class AuthService {
   async forgotPassword(email: string): Promise<void> {
     return await this.fireAuth.sendPasswordResetEmail(email);
   }
-  async isAuth() {
-
-  }
   async isEmailVerified() {
     try {
       const user = await this.fireAuth.currentUser;
@@ -81,6 +79,11 @@ export class AuthService {
     return this.fireAuth.signOut().then(() => {
       localStorage.removeItem('user');
     });
+  }
+  isAuth() {
+    return this.fireAuth.authState.pipe(
+      map( fbUser => fbUser != null )
+    );
   }
 
 }
