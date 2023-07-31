@@ -2,7 +2,6 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Injectable } from "@angular/core";
 import { User } from "../models/user.model";
-import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -25,11 +24,14 @@ export class AuthService {
             msg: 'Email no ha sido verificado'
           };
         }
+        const token = await user.getIdToken();
+        localStorage.setItem("firebaseToken", token);
+        return {
+          status: true,
+          msg: 'OK'
+        }
       }
-      return {
-        status: true,
-        msg: 'OK'
-      }
+      throw new Error();
     } catch (error) {
       return {
         status: false,
@@ -37,11 +39,15 @@ export class AuthService {
       };
     }
   }
-  async signUp({email, password, ...user}: User) {
+  async signUp({ email, password, ...userData }: User) {
     try {
-      await this.fireAuth.createUserWithEmailAndPassword(email, password);
-      await this.fireStore.collection('users').add(user)
-      await this.sendVerificationEmail();
+      const { user } = await this.fireAuth.createUserWithEmailAndPassword(email, password);
+      if (user) {
+        await this.fireStore.collection('users').add(userData)
+        await this.sendVerificationEmail();
+        const token = await user.getIdToken();
+        localStorage.setItem("firebaseToken", token);
+      }
       return {
         status: true,
         msg: 'OK'
@@ -80,10 +86,8 @@ export class AuthService {
       localStorage.removeItem('user');
     });
   }
-  isAuth() {
-    return this.fireAuth.authState.pipe(
-      map( fbUser => fbUser != null )
-    );
+  isAuth(): string | null {
+    return localStorage.getItem("firebaseToken");
   }
 
 }

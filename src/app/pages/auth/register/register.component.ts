@@ -46,7 +46,7 @@ export class RegisterComponent {
       didOpen: async () => {
         try {
           Swal.showLoading();
-          const result = await this.authService.signUp(this.registerForm.value);
+          await this.authService.signUp(this.registerForm.value);
 
           Swal.fire({
             position: 'center',
