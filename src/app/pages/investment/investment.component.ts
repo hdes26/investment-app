@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2'
+import { ChartComponent } from './chart/chart.component';
 
 @Component({
   selector: 'app-investment',
@@ -10,6 +11,7 @@ import Swal from 'sweetalert2'
   styleUrls: ['./investment.component.css']
 })
 export class InvestmentComponent implements OnInit {
+  @ViewChild(ChartComponent) childComponent!: ChartComponent;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -32,9 +34,8 @@ export class InvestmentComponent implements OnInit {
         this.investmentForm.get('project')?.setValue(dataObj.project)
         this.investmentForm.get('amount')?.setValue(dataObj.amount)
         this.investmentForm.get('units')?.setValue(dataObj.units)
-        localStorage.removeItem("investment");
       }
-    } 
+    }
     else {
       this.isAuth = false;
     }
@@ -75,6 +76,22 @@ export class InvestmentComponent implements OnInit {
     }
     return null;
   }
+  getRandomNumberExcluding(min: number, max: number, excludedValue: number): number {
+    let randomValue = Math.floor(Math.random() * (max - min + 1)) + min;
+    while (randomValue === excludedValue) {
+      randomValue = Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    return randomValue;
+  }
+
+  generateRandomUniqueArray(length: number, minValue: number, maxValue: number): number[] {
+    const randomArray: number[] = [];
+    for (let i = 0; i < length; i++) {
+      const randomValue = this.getRandomNumberExcluding(minValue, maxValue, randomArray[i - 1]);
+      randomArray.push(randomValue);
+    }
+    return randomArray;
+  }
   onSubmit() {
     if (!this.isAuth) {
       localStorage.setItem("investment", JSON.stringify(this.investmentForm.value));
@@ -89,6 +106,11 @@ export class InvestmentComponent implements OnInit {
         this.router.navigate(['/auth/register']);
       });
       return;
+    }
+    else {
+      console.log(this.generateRandomUniqueArray(6, 0, 100));
+
+      this.childComponent.updateChart(this.generateRandomUniqueArray(6, 0, 6));
     }
   }
 }

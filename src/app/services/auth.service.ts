@@ -114,7 +114,7 @@ export class AuthService {
     if (data) {
       const dataObj = JSON.parse(data);
       if (!dataObj.expirationTime) {
-        return dataObj.token;
+        return dataObj;
       }
       const now = new Date().getTime();
       if (now <= dataObj.expirationTime) {
