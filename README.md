@@ -26,9 +26,6 @@ npm start
 ## Recursos 🔗
 [Repositorio Github](https://github.com/hdes26/investment-app) 
 
-## Netlify 🌶️
-[Netlify](https://incomparable-daifuku-8c6f7c.netlify.app/) 
-
 
 
 
