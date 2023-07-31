@@ -42,7 +42,7 @@
             <button *ngIf="!loginForm.invalid" [disabled]="loginForm.invalid" class="col-span-6 bg-black text-white rounded-3xl p-3 my-2 mt-8">
                 Ingresar
             </button>
-            <button *ngIf="loginForm.invalid"  class="col-span-6 bg-black cursor-not-allowed text-white rounded-3xl p-3 my-2 mt-8">
+            <button *ngIf="loginForm.invalid"  [disabled]="loginForm.invalid" class="col-span-6 bg-black cursor-not-allowed text-white rounded-3xl p-3 my-2 mt-8">
                 Ingresar
             </button>
 

@@ -4,7 +4,7 @@ export interface User {
     email:string;
     prefix:number;
     cellphone:number;
-    password:string;
     met:string;
     referral_code:number;
+    password:string;
 }

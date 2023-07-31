@@ -2,27 +2,22 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './pages/auth/register/register.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './pages/auth/login/login.component';
-import { AuthComponent } from './pages/auth/auth.component';
-import { ChartComponent } from './pages/investment/chart/chart.component';
-import { InvestmentComponent } from './pages/investment/investment.component';
-
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AuthModule } from './pages/auth/auth.module';
+import { InvestmentModule } from './pages/investment/investment.module';
+import { environment } from 'src/environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent,
-    LoginComponent,
-    AuthComponent,
-    InvestmentComponent,
-    ChartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule
+    AuthModule,
+    InvestmentModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
