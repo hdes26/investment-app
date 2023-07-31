@@ -19,13 +19,24 @@ export class InvestmentComponent implements OnInit {
     units: new FormControl(0, [Validators.required, Validators.pattern('^[0-9]+$')]),
     terms_condition: new FormControl(false, [Validators.requiredTrue]),
   });
-  projectOptions: string[] = ['Nido de agua ', 'Indie Universe'];
+  projectOptions: string[] = ['Nido de agua', 'Indie Universe'];
   isAuth: boolean = false;
 
   ngOnInit(): void {
     const token = this.authService.isAuth();
     if (token) {
-      this.isAuth = true;      
+      this.isAuth = true;
+      const data = localStorage.getItem("investment");
+      if (data) {
+        const dataObj = JSON.parse(data);
+        this.investmentForm.get('project')?.setValue(dataObj.project)
+        this.investmentForm.get('amount')?.setValue(dataObj.amount)
+        this.investmentForm.get('units')?.setValue(dataObj.units)
+        localStorage.removeItem("investment");
+      }
+    } 
+    else {
+      this.isAuth = false;
     }
   }
   onInputChange() {
@@ -70,11 +81,11 @@ export class InvestmentComponent implements OnInit {
       Swal.fire({
         allowEscapeKey: false,
         allowOutsideClick: false,
-        timer:1000,
+        timer: 1000,
         didOpen: () => {
           Swal.showLoading()
         },
-      }).then(()=>{
+      }).then(() => {
         this.router.navigate(['/auth/register']);
       });
       return;
