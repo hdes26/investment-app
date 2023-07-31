@@ -25,7 +25,7 @@ export class InvestmentComponent implements OnInit {
   ngOnInit(): void {
     const token = this.authService.isAuth();
     if (token) {
-      this.isAuth = true;
+      this.isAuth = true;      
     }
   }
   onInputChange() {

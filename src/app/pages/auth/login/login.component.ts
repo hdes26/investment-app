@@ -22,12 +22,12 @@ export class LoginComponent {
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
-  async forgotPassword(){
-  //await this.authService.forgotPassword()
+  async forgotPassword() {
+    //await this.authService.forgotPassword()
   }
   async onSubmit() {
-    const { email, password } = this.loginForm.value;
-    const login = await this.authService.signIn(email, password);
+    const { email, password, save_session } = this.loginForm.value;
+    const login = await this.authService.signIn(email, password, save_session);
 
     if (!login.status) {
       Swal.fire({

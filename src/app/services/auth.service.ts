@@ -12,7 +12,9 @@ export class AuthService {
   constructor(private fireAuth: AngularFireAuth, private fireStore: AngularFirestore) { }
 
 
-  async signIn(email: string, password: string) {
+  async signIn(email: string, password: string, save_session: boolean) {
+    console.log(save_session);
+
     try {
       const result = await this.fireAuth.signInWithEmailAndPassword(email, password);
       const user = result.user;
@@ -25,7 +27,17 @@ export class AuthService {
           };
         }
         const token = await user.getIdToken();
-        localStorage.setItem("firebaseToken", token);
+        if (!save_session) {
+          const expirationTimeMs = 300000; // 5 minutos en milisegundos
+          const expirationTime = new Date().getTime() + expirationTimeMs;
+          const dataToStore = {
+            token: token,
+            expirationTime: expirationTime
+          };
+          localStorage.setItem("loginData", JSON.stringify(dataToStore));
+        } else {
+          localStorage.setItem("loginData", JSON.stringify(token));
+        }
         return {
           status: true,
           msg: 'OK'
@@ -70,8 +82,19 @@ export class AuthService {
       console.log(error);
     }
   }
-  async forgotPassword(email: string): Promise<void> {
-    return await this.fireAuth.sendPasswordResetEmail(email);
+  async forgotPassword(email: string) {
+    try {
+      await this.fireAuth.sendPasswordResetEmail(email);
+      return {
+        status: true,
+        msg: 'Hemos enviado el link de recuperacion a tu correo'
+      }
+    } catch (error) {
+      return {
+        status: false,
+        msg: 'Error al enviar correo'
+      }
+    }
   }
   async isEmailVerified() {
     try {
@@ -87,7 +110,20 @@ export class AuthService {
     });
   }
   isAuth(): string | null {
-    return localStorage.getItem("firebaseToken");
+    const data = localStorage.getItem("loginData");
+    if (data) {
+      const dataObj = JSON.parse(data);
+      if (!dataObj.expirationTime) {
+        return dataObj.token;
+      }
+      const now = new Date().getTime();
+      if (now <= dataObj.expirationTime) {
+        return dataObj.token;
+      } else {
+        localStorage.removeItem("loginData");
+      }
+    }
+    return null;
   }
 
 }

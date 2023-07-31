@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { authRoutes } from './auth.routes';
 import { AuthComponent } from './auth.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RecoverComponent } from './recover/recover.component';
 
 
 
@@ -13,7 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     AuthComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    RecoverComponent
   ],
   imports: [
     CommonModule,

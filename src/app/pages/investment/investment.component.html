@@ -113,11 +113,11 @@
 
             
 
-            <div class="flex justify-center w-full mt-4">
+            <div *ngIf="!isAuth" class="flex justify-center w-full mt-4">
                 <p class="text-[#848484] w-max text-my-custom-size md:text-sm">¿Ya tienes cuenta?</p>
             </div>
 
-            <div class="flex justify-center w-full">
+            <div *ngIf="!isAuth" class="flex justify-center w-full">
                 <p class="text-[#4743E0] w-max text-my-custom-size md:text-sm">
                     <span class="mr-2 cursor-pointer hover:text-blue-900" routerLink="/auth/login">Iniciar sesión</span>
                     | <span class="ml-2 cursor-pointer hover:text-blue-900" routerLink="/auth/register">Crea tu
@@ -126,7 +126,7 @@
 
             </div>
 
-            <div class="flex justify-center self-center w-3/4 md:w-full h-min gap-x-3 my-3 md:my- items-center">
+            <div *ngIf="!isAuth" class="flex justify-center self-center w-3/4 md:w-full h-min gap-x-3 my-3 md:my- items-center">
 
                 <svg class="border-2 border-[#3533FF] rounded-full w-16" viewBox="0 0 60 60" fill="none"
                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
